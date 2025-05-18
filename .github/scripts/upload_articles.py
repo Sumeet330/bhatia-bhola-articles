@@ -20,7 +20,7 @@ def extract_text(docx_path):
 def get_or_create_category(category_name):
     """Fetches the category ID or creates it in WordPress"""
     categories_url = WP_URL.replace("/posts", "/categories")
-
+    print(WP_USER)
     # Check if category exists
     res = requests.get(categories_url, auth=(WP_USER, WP_APP_PASSWORD), params={"search": category_name})
     if res.status_code == 200 and res.json():
