@@ -60,6 +60,16 @@ def upload_article(file_path):
         print(f"❌ Failed to publish {file_path.name}: {res.status_code} - {res.text}")
 
 def main():
+    print("🔍 Checking environment variables...")
+    wp_user = os.environ.get("WP_USER")
+    wp_pass = os.environ.get("WP_APP_PASSWORD")
+
+    if wp_user and wp_pass:
+        print(f"✅ WP_USER loaded: {wp_user}")
+        print("✅ WP_APP_PASSWORD is set.")
+    else:
+        print("❌ Environment variables missing!")
+        return
     if not ARTICLES_DIR.exists():
         print(f"❌ Articles folder not found: {ARTICLES_DIR}")
         return
