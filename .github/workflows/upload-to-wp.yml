@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'articles/**/*.docx'
+  workflow_dispatch:  # ✅ Enables manual run from GitHub UI
 
 jobs:
   publish:
