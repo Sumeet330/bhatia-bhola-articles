@@ -65,7 +65,7 @@ def main():
     wp_pass = os.environ.get("WP_APP_PASSWORD")
 
     if wp_user and wp_pass:
-        print(f"✅ WP_USER loaded: {wp_user}")
+        print(f"✅ WP_USER is: {os.environ['WP_USER']}")
         print("✅ WP_APP_PASSWORD is set.")
     else:
         print("❌ Environment variables missing!")
