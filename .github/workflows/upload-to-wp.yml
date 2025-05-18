@@ -1,0 +1,30 @@
+name: Publish Articles to WordPress
+
+on:
+  push:
+    paths:
+      - 'articles/**/*.docx'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Python dependencies
+        run: |
+          pip install python-docx requests
+
+      - name: Run Article Upload Script
+        run: python .github/scripts/upload_articles.py
+        env:
+          WP_URL: https://bhatiabhola.com/wp-json/wp/v2/posts
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
